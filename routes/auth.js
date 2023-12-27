@@ -17,7 +17,7 @@ express().locals._ = _;
 router.use(session({
     secret: "abcd",
     store: new MongoStore({
-      mongoUrl: "mongodb+srv://ishant:"+process.env.MONGO_PASSWORD+"@cluster0.qho5cx4.mongodb.net/MessDB",
+      mongoUrl: 'mongodb+srv://ishant:'+process.env.MONGO_PASSWORD+'@cluster0.qho5cx4.mongodb.net/MessDB',
       ttl: 14 * 24 * 60 * 60 // = 14 days. Default
   }),
     resave: false,

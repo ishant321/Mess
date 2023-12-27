@@ -21,6 +21,8 @@ app.use(fileUpload({useTempFiles: true}));
 
 mongoose.connect("mongodb+srv://ishant:"+process.env.MONGO_PASSWORD+"@cluster0.qho5cx4.mongodb.net/MessDB").then(() => console.log("Connected to mongoDB atlas"));
 
+
+
 const userModel = mongoose.model("userModel");
 const postModel = mongoose.model("postModel");
 const commentModel = mongoose.model("commentModel");
