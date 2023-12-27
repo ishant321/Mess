@@ -15,7 +15,7 @@ require('dotenv').config()
 
 express().locals._ = _;
 router.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: "abcd",
     store: new MongoStore({
       mongoUrl: 'mongodb+srv://ishant:'+process.env.MONGO_PASSWORD+'@cluster0.qho5cx4.mongodb.net/MessDB',
       ttl: 14 * 24 * 60 * 60 // = 14 days. Default
@@ -41,7 +41,7 @@ passport.use(userModel.createStrategy());
 passport.use(new googleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/googleform"
+  callbackURL: "https://mess-tan.vercel.app/auth/google/googleform"
 },
 function(accessToken, refreshToken, profile, done) {
   // console.log(profile);
