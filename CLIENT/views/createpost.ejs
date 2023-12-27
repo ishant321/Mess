@@ -1,0 +1,85 @@
+<%- include("partials/header.ejs") %>   
+
+<div class="indexContainer">
+    <div class="post-box pt-5" style="min-height: 100vh; min-width: 60%;">
+    <form action="/createpost" method="post" enctype="multipart/form-data" class="mt-9 m-2 needs-validation" novalidate>
+          <div class="input-group mb-4" style="background-color: rgb(16, 93, 86); border-radius: 5px;">
+            <div class="input-group-prependx">
+              <img src="<%= user.profilephoto %>"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail m-2"
+                style="width: 4rem; height: 4rem;">
+            </div>
+            <div class="m-3">
+              <h5 class="mb-0"><%= user.name %></h5>
+              <p class="mb-0"><%= user.hostel %></p>
+            </div>
+          </div>
+
+          <div class="input-group mb-5">
+            <div class="input-group-prependx">
+              <span class="input-group-text text-white" style="min-width: 6rem;" id="inputGroup-sizing-default">Title</span>
+            </div>
+            <input type="text" class="form-control" id="validationCustom01" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="posttitle" required />
+            <div class="valid-feedback">
+              Looks good! 
+            </div>
+            <div class="invalid-feedback">
+              You must enter a title
+            </div>
+          </div>
+
+          <div class="input-group mb-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-white" style="min-height: 5rem" id="inputGroup-sizing-default">Describe</span>
+            </div>
+            <textarea type="text" id="validationCustom02" class="form-control" style="min-height: 5rem" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="postbody" required></textarea>
+            <div class="valid-feedback" style="margin-top: 5rem;">
+              Looks good! 
+            </div>
+            <div class="invalid-feedback" style="margin-top: 5rem;">
+              You must describe your complaint
+            </div>
+          </div>
+
+          <div class="input-group mb-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-white" id="inputGroup-sizing-default">Visibility</span>
+            </div>
+            <select class="form-control" id="validationCustom03" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="visibility" required>
+              <option value="" selected disabled>Choose your post Visibility</option>
+              <option value="Public">Public</option>
+              <option value="Dining Companion">Dining Companion</option>
+              <option value="Chief warden">Chief warden</option>
+            </select>
+
+
+            <div class="valid-feedback mt-5" style="margin-top: 5rem;">
+              Looks good! 
+            </div>
+            <div class="invalid-feedback mt-5" style="margin-top: 50px;">
+              Select the Visibility
+            </div>
+          </div>
+
+          <div class="input-group mb-5 ms-auto me-auto justify-content-between align-items-center" id="createpost-image-section" style="height: 13 rem;">
+            <div class="d-flex flex-row h-25 ">
+              <input type="file" class="form-control" id="postformimage" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".jpg, .jpeg, .png" name="postimage" required/>
+              <div class="valid-feedback mt-5" style="margin-top: 5rem;">
+                Looks good! 
+              </div>
+              <div class="invalid-feedback mt-5" style="margin-top: 50px;">
+                Select the Visibility
+              </div>
+              <button class="btn btn-outline-secondary text-white bg-danger" type="button" id="inputGroupFileAddon04">Remove</button>
+            </div>
+            <img src="" id="imagepreview" alt="no preview" style="height: 13rem; width: 17rem; border: 1px dashed whitesmoke; border-radius: 5px;">
+          </div>
+
+      <div class="d-flex justify-content-center mb-5">
+        <button class="w-300 btn btn-lg btn-primary" type="submit">post</button>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <%- include("partials/footer.ejs") %> 

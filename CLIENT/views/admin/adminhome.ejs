@@ -1,0 +1,395 @@
+<%- include("../partials/header.ejs") %>    
+
+<div class="indexContainer">
+
+<!-- ================================ HEADER FOR SHOWING ERROR MESSAGE ============================================= -->
+
+<div class="modal <%= toastvalue %> mt-5" tabindex="-1" role="dialog" id="toast">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="text-black"><%= msg %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================ ! HEADER FOR SHOWING ERROR MESSAGE ============================================= -->    
+
+    <div style="width: 70%; min-height: 100vh;" class="mt-5">
+        <div class="container w-50 mt-3 d-flex flex-column align-items-center text-black admin-logo mt-5" style="height: 10rem">
+            <div><i class="fa-solid fa-shield fa-5x fa-10x hover-overlay" style="color: #060067"></i></div>
+            <div class="text-center position-absolute">
+                <h2 style="color: #9affe8"><%= adminUser.name %></h2>
+                <p class="text-white font-weight-light">Admin</p>
+            </div>
+        </div>
+        <form action="/logout" method="post" class="text-center mt-2"><button type="submit" class="btn btn-danger">Logout</button></form>
+        <div class="container mt-2 justify-content-between admin-add-button" style="height: 10rem; width: 60%;">
+          <!-- ================== CONSTRAINTS ON NUMBER OF ADMINS, ACCCOUNTANTS AND CHIEF WARDEN =============== -->
+            <% var adminState; if(allAdmin.length == 3){ adminState = "disabled" } %>
+            <% var cwState; if(chiefWarden.length == 1){ cwState = "disabled" } %>
+            <!-- <% var accoutantState; if(allAccountant.length == 10){ accoutantState = "disabled" } %> -->
+          <!-- ================== ! CONSTRAINTS ON NUMBER OF ADMINS, ACCCOUNTANTS AND CHIEF WARDEN =============== -->
+
+            <button class="btn btn-lg w-50 me-1 mb-1 btn-info rolebutton" value="admin" onclick="showsignuppopup(this)" <%= adminState %>>Add admin</button>
+            <button class="btn btn-lg w-50 me-1 mb-1 btn-info rolebutton" value="chiefwarden" onclick="showsignuppopup(this)" <%= cwState %>>Add Chief warden</button>
+            <!-- <button class="btn btn-lg w-50 me-1 mb-1 btn-info rolebutton" value="accountant" onclick="showsignuppopup(this)" <%= accoutantState %>>Add accountant</button> -->
+
+<!-- =================== SIGN UP MODAL FOR ADMIN, CHIEF WARDEN AND ACCOUNTANT ========================= -->
+            <div class="modal text-center mt-5" tabindex="-1" id="showsignuppopupbox">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header d-flex justify-content-center bg-warning">
+                    <h4 class="modal-title text-black" id="roleintitle"></h4>
+                    <button style="background-color: transparent; border: none; position: absolute; right: 5px; top: 5px;" onclick="removesignuppopup()"><i class="fa-solid fa-xmark"></i></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/signup" method="post" class="d-flex flex-column justify-content-center align-items-center needs-validation" id="adminform" novalidate>
+                      <h5 class="text-black mb-3">Sign up</h5>
+                      
+                      <!-- for name-->
+                      <div class="form-outline mb-4 w-75">
+                        <input type="text" id="validationCustom01" class="form-control" name="name" required/>
+                        <label class="form-label" for="form3Example1">Name</label>
+                        <div class="valid-feedback">
+                          Looks good! 
+                        </div>
+                        <div class="invalid-feedback">
+                          Enter your Name
+                        </div>
+                      </div>
+
+                      <!-- for email -->
+                      <div class="form-outline mb-4 w-75">
+                        <input type="email" id="validationCustom02" class="form-control" name="email" required/>
+                        <label class="form-label" for="form3Example3">Email </label>
+                        <div class="valid-feedback">
+                          Looks good! 
+                        </div>
+                        <div class="invalid-feedback">
+                          Enter your Email
+                        </div>
+                      </div>
+
+                      <!-- for password -->
+                      <div class="form-outline mb-4 w-75">
+                        <input type="password" id="validationCustom03" class="form-control" name="password" required/>
+                        <label class="form-label" for="typePassword">Password </label>
+                        <div class="valid-feedback">
+                          Looks good! 
+                        </div>
+                        <div class="invalid-feedback">
+                          Enter your password
+                        </div>
+                      </div>
+
+                      <!-- for hostel only for ACCOUNTANT -->
+                      <div class="form-outline mb-4 w-75 d-none" id="accountantInput">
+                        <input type="text" id="form13" class="form-control" name="hostel" />
+                        <label class="form-label" for="form13">Hostel</label>
+                      </div>
+
+                      <!-- role -->
+                      <input type="hidden" id="role" name="role" value="">
+
+                      <!-- for button -->
+                      <button type="submit" class="btn text-white" style="background-color: #4c75a3;" href="#!" role="button">
+                        Sign up
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!-- =================== ! SIGN UP MODAL FOR ADMIN, CHIEF WARDEN AND ACCOUNTANT ========================= -->
+
+        </div>
+        <div class="container d-flex flex-column mt-5" style="height: fit-content">
+            <h3>Manage users</h3>
+
+            <!-- user == chief warden -->
+            <div class="d-flex flex-column mt-4 text-center mb-5" style="background-color: #e1a140;">
+                <h4 class="text-black mt-2">Chief Warden</h4>
+                <div style="background-color: #e1a140;">
+                    <table class="table align-middle mt-0" style="min-width: 60rem;">
+                        <thead>
+                          <tr>
+                            <th style="margin-left: 10px;">Name</th>
+                            <th>Role</th>
+                            <!-- <th>Profile</th> -->
+                            <th>Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% var i = 0; chiefWarden.forEach((item) => { %>
+                          <tr>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                <img
+                                    src="<%= item.profilephoto %>"
+                                    alt=""
+                                    style="width: 45px; height: 45px"
+                                    class="rounded-circle"
+                                    />
+                                <div class="ms-3 text-start">
+                                  <p class="fw-bold mb-1"><%= item.name %></p>
+                                  <p class="text-muted mb-0"><%= item.email %></p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1"><%= item.role %></p>
+                              <p class="text-muted mb-0">---</p>
+                            </td>
+                            <!-- <td>
+                              <a href="/showuserprofile" role="button" class="badge badge-success rounded-pill d-inline">profile</span>
+                            </td> -->
+                            <td>
+                              <form action="/removeuser/<%= item.id %>" method="post">
+                                <button type="button" class="btn btn-link btn-sm btn-rounded" value="<%= i%>" onclick="showpopup(this)">
+                                    Remove
+                                </button>
+                                <!-- pop up box to confirm to remove the user or not -->
+                                <div class="modal" tabindex="-1" id="showpopupbox<%= i %>">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Are you sure?</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>By removing user all the account related information will be permanently deleted</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" onclick="removepopup()">Cancel</button>
+                                          <button class="btn btn-danger" type="submit">Confirm</button>
+                                          <% i++; %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <!-- ! pop up box to confirm to remove the user or not -->
+                                </form>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- user == admin -->
+            <div class="d-flex flex-column mt-4 bg-white text-center mb-5">
+                <h4 class="text-black mt-2">Admins(<%= allAdmin.length %>)</h4>
+                <div>
+                    <table class="table align-middle bg-white mt-0" style="min-width: 60rem;">
+                        <thead class="bg-light">
+                          <tr>
+                            <th style="margin-left: 10px;">Name</th>
+                            <th>Role</th>
+                            <!-- <th>Profile</th> -->
+                            <th>Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% var i = 0, admin = ""; if(allAdmin.length == 1){ admin = "disabled"} allAdmin.forEach((item) => { %>
+                          <tr>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                <img
+                                    src="<%= item.profilephoto %>"
+                                    alt=""
+                                    style="width: 45px; height: 45px"
+                                    class="rounded-circle"
+                                    />
+                                <div class="ms-3 text-start">
+                                  <p class="fw-bold mb-1"><%= item.name %></p>
+                                  <p class="text-muted mb-0"><%= item.email %></p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1"><%= item.role %></p>
+                              <p class="text-muted mb-0">---</p>
+                            </td>
+                            <!-- <td>
+                              <a href="/showuserprofile" role="button" class="badge badge-success rounded-pill d-inline">profile</span>
+                            </td> -->
+                            <td>
+                              <form action="/removeuser/<%= item.id %>" method="post">
+                                <button type="button" class="btn btn-link btn-sm btn-rounded" value="<%= i%>" onclick="showpopup(this)" <%=  admin %>>
+                                    Remove
+                                </button>
+                                <!-- pop up box to confirm to remove the user or not -->
+                                <div class="modal" tabindex="-1" id="showpopupbox<%= i %>">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Are you sure?</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>By removing user all the account related information will be permanently deleted</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" onclick="removepopup()">Cancel</button>
+                                          <button class="btn btn-danger" type="submit">Confirm</button>
+                                          <% i++; %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <!-- ! pop up box to confirm to remove the user or not -->
+                                </form>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- user == accountant -->
+            <div class="d-flex flex-column mt-4 bg-white text-center mb-5">
+                <h4 class="text-black mt-2">Accounants(<%= allAccountant.length %>)</h4>
+                <div>
+                    <table class="table align-middle bg-white mt-0" style="min-width: 60rem;">
+                        <thead class="bg-light">
+                          <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Profile</th>
+                            <th>Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% var j = 0; allAccountant.forEach((item) => { %>
+                          <tr>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                <img
+                                    src="<%= item.profilephoto %>"
+                                    alt=""
+                                    style="width: 45px; height: 45px"
+                                    class="rounded-circle"
+                                    />
+                                <div class="ms-3 text-start">
+                                  <p class="fw-bold mb-1"><%= item.name %></p>
+                                  <p class="text-muted mb-0"><%= item.email %></p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1"><%= item.role %></p>
+                              <p class="text-muted mb-0"><%= item.hostel %></p>
+                            </td>
+                            <td>
+                              <a href="/showuserprofile" role="button" class="badge badge-success rounded-pill d-inline">profile</a>
+                            </td>
+                            <td>
+                              <form action="/removeuser/<%= item.id %>" method="post">
+                                <button type="button" class="btn btn-link btn-sm btn-rounded" value="<%= j%>" onclick="showpopup(this)">
+                                    Remove
+                                </button>
+                                <!-- pop up box to confirm to remove the user or not -->
+                                <div class="modal" tabindex="-1" id="showpopupbox<%= j %>">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Are you sure?</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>By removing user all the account related information will be permanently deleted</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" onclick="removepopup()">Cancel</button>
+                                          <button class="btn btn-danger" type="submit">Confirm</button>
+                                          <% j++; %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <!-- ! pop up box to confirm to remove the user or not -->
+                                </form>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- user == student -->
+            <div class="d-flex flex-column mt-4 bg-white text-center mb-5">
+                <h4 class="text-black mt-2">Students(<%= allStudent.length %>)</h4>
+                <div>
+                    <table class="table align-middle bg-white mt-0" style="min-width: 60rem;">
+                        <thead class="bg-light">
+                          <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Profile</th>
+                            <th>Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% var k = 0; allStudent.forEach((item) => { %>
+                          <tr>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                <img
+                                    src="<%= item.profilephoto %>"
+                                    alt=""
+                                    style="width: 45px; height: 45px"
+                                    class="rounded-circle"
+                                    />
+                                <div class="ms-3 text-start">
+                                  <p class="fw-bold mb-1"><%= item.name %></p>
+                                  <p class="text-muted mb-0"><%= item.email %></p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <p class="fw-normal mb-1"><%= item.role %></p>
+                              <p class="text-muted mb-0"><%= item.hostel %></p>
+                            </td>
+                            <td>
+                            <form action="/userprofile/<%= item.id %>" method="get">
+                              <button href="/userprofile" role="button" class="badge badge-success rounded-pill d-inline border-0">profile</button>
+                            </form>
+                            </td>
+                            <td>
+                              <form action="/removeuser/<%= item.id %>" method="post">
+                                <button type="button" class="btn btn-link btn-sm btn-rounded" value="<%= k %>" onclick="showpopup(this)">
+                                    Remove
+                                </button>
+                                <!-- pop up box to confirm to remove the user or not -->
+                                <div class="modal" tabindex="-1" id="showpopupbox<%= k %>">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Are you sure?</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>By removing user all the account related information will be permanently deleted</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" value="<%= k %>" onclick="removepopup(this)">Cancel</button>
+                                          <button class="btn btn-danger" type="submit">Confirm</button>
+                                          <% k++; %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <!-- ! pop up box to confirm to remove the user or not -->
+                                </form>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer.ejs") %> 

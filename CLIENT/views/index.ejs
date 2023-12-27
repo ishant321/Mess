@@ -1,0 +1,330 @@
+<%- include("partials/header.ejs") %>
+
+
+  <div class="indexContainer min-vh-100" >
+
+  <!-- ================================ HEADER FOR SHOWING ERROR MESSAGE ============================================= -->
+
+  <div class="modal <%= toastvalue %> mt-5" tabindex="-1" role="dialog" id="toast">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <p class="text-black">
+            <%= msg %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================ !HEADER FOR SHOWING ERROR MESSAGE ============================================= -->
+
+  <% if(user=="notAuthenticated" ){ %>
+
+
+
+    <div class="container mt-5 home-container ">
+      <div class="row d-flex justify-content-between p-2 main-first">
+        <div class="col-5">
+          <img src=".././images/ratatouille.png" alt="no image" class="img-fluid main-logo">
+        </div>
+        <div class="col-5 main-first-content">
+          <div class="text-white">
+            <h1 class="mb-1 mt-5">Mess</h1>
+            <div class="d-flex">
+              <h1 class="mb-3" style="color: yellow">Complaint</h1>&nbsp;&nbsp;
+              <h1 class="mb-3">Portal</h1>
+            </div>
+            <p class="mb-4">let your complaint reach to the other students, highlighted by upvoting by other
+              students and let it reach to the cheif warden to solve it faster.</p>
+
+            <!-- <div class="col-4"> -->
+            <a class="btn btn-outline-light btn-lg" href="/signup" role="button" aria-expanded="false">
+              Sign up
+            </a>
+            <!-- </div> -->
+            <div class="dropdown">
+              <a class="btn btn-outline-light btn-lg" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                login
+              </a>
+              <div class="dropdown-content bg-transparent">
+                <a class="dropdown-item" href="/login/?user=student" role="button">Student</a>
+                <a class="dropdown-item" href="/login/?user=chiefwarden" role="button">Chief Warden</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5 main-second justify-content-center">
+      <div class="row mb-4 text-center">
+        <h1 style="font-family: Arial, Helvetica, sans-serif;">Our hostels</h1>
+      </div>
+      <div class="col-4 mb-3" style="width: 20rem;">
+        <div class="card h-100">
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+            alt="Hollywood Sign on The Hill" />
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 mb-3" style="width: 20rem;">
+        <div class="card h-100">
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+            alt="Hollywood Sign on The Hill" />
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 mb-3" style="width: 20rem;">
+        <div class="card h-100">
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+            alt="Hollywood Sign on The Hill" />
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <% }else{ %>
+      <div class="indexContainer min-vh-100 mt-5 mb-2">
+
+<!-- Foating Notification  -->
+        <div class="floating-button" id="notification">
+          <button type="button" id="bell" style="background-color: transparent; border: none;"><i
+              class="bi bi-bell-fill text-white" style="font-size: x-large;"></i></button>
+            
+            <div class="notifications" id="box" style="height: max-content;">
+            <h2>Notifications - <span><%= notificationPost.length%></span></h2>
+            <% notificationPost.forEach(item =>{ %>
+            <div class="notifications-item"> 
+              <img src="<%= item.photo %>" alt="img">
+              <div class="notification-status" style="display: flex; justify-content: space-between; color: black; width: 100%">
+              <div class="text" style="width: 143px;"> 
+                <h4><%= item.title %></h4>
+                <p><%= item.body %></p>
+              </div>
+              <% if( item.status === "solved") {%>
+                <div style="width: 80px; height: 30px; text-align: center;border: 2px solid rgb(9, 79, 79); border-radius: 10px; font-size: small; background-color: rgb(65, 195, 117); color: antiquewhite;">
+                  Solved
+                </div>
+              <% }else { %>
+                <div style="width: 80px; height: 30px; text-align: center;border: 2px solid rgb(9, 79, 79); border-radius: 10px; font-size: small; background-color: rgb(195, 65, 65);  color: antiquewhite;">
+                   Unsolved
+                </div>
+                <% } %>
+                
+              </div>
+            </div>
+            <% }) %>
+          </div>
+
+        </div>
+<!-- ! Foating Notification  -->
+        
+        <!-- ================== for posts =========================== -->
+        <!-- <div class="mt-5">
+
+    </div> -->
+
+
+        <%var i=0; allPost.forEach((item)=> { %>
+          <div class=" feed-post bg-white mt-3">
+            <div class="d-flex feed-post-user-detail mt-2 mb-0">
+              <img src="<%= item.postedby.profilephoto%>" class="feed-post-profile-photo" alt="Profile-Photo">
+              <div class="feed-post-user-name-date-main d-flex">
+                <div class="feed-post-user-name-date d-flex flex-column">
+                  <div class="feed-post-user-name">
+                    <%= item.postedby.name %>
+                  </div>
+                  <div class="feed-post-access">
+                    <%= item.postedby.hostel %>&nbsp;Hostel
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-center ms-auto me-3">04/09/2023
+                <div class="feed-post-status"
+                  style="width: 100%; text-align: center; border: 2px solid rgb(26, 91, 111); border-radius: 10px; background-color: rgb(16, 95, 95); color: antiquewhite;">
+                  <%= item.status %>
+                </div>
+              </div> <!-- for date-->
+
+            </div>
+            <hr class="mt-0">
+            <div class="d-flex flex-column feed-post-discription">
+              <div class="feed-post-title text-primary">
+                #<%= item.title %>
+              </div>
+              <div class="feed-post-des">
+                <%= item.body %>
+              </div>
+
+
+            </div>
+            <div class="feed-post-user-image-container p-1"><img src="<%= item.photo %>" alt=""
+                class="feed-post-user-image">
+            </div>
+            <hr class="mt-0 mb-0">
+            <div class="feed-post-body-vote-access-comment">
+              <div class="feed-post-body-vote-access">
+                <div class="feed-post-body-vote-access-comment-post-vote">
+
+                  <% var k=item.upvote.length;%>
+                    <form action="/upvote" , method="post" id="upvoteForm<%=i%>" class="d-flex">
+                      <input type="hidden" value="<%= item.id %>" name="postid" id="upvoteInput<%=i%>">
+                      <button class="border-0 bg-transparent d-flex align-items-center me-2" type="submit"
+                        id="upvoteButton<%=i%>" value="<%= i %>" onclick="ajaxFunctionForUpvote(this)"><i
+                          class="bi-arrow-up-circle me-1" style="font-size: 2rem; color: cornflowerblue;"></i>
+                        <%= item.upvote.length;%>
+                      </button>
+                    </form>
+
+                    <form action="/downvote" , method="post" id="downvoteForm<%=i%>" class="d-flex">
+                      <input type="hidden" value="<%= item.id %>" name="postid" id="downvoteInput<%=i%>">
+                      <button class="border-0 bg-transparent d-flex align-items-center" type="submit"
+                        id="downvoteButton<%=i%>" value="<%= i %>" onclick="ajaxFunctionForDownvote(this)"><i
+                          class="bi-arrow-down-circle me-1" style="font-size: 2rem; color: cornflowerblue;"></i>
+                        <%= item.downvote.length;%>
+                      </button>
+                    </form>
+                    <%i++;%>
+
+                </div>
+                <div class="feed-post-body-vote-access-comment-access">
+                  Public <!-- The scope of the post -->
+                </div>
+              </div>
+
+              <!------------------------ SECTION FOR COMMENTS  ---------------------->
+              <form action="/newComment" method="post" id="commentForm<%= item.id %>">
+                <div class="feed-post-body-vote-access-comment-comment">
+                  <textarea name="comment" id="commentInput<%= item.id %>" cols="45" rows="2"
+                    class="feed-post-body-vote-access-comment-comment-comment" required></textarea>
+                  <input type="hidden" value="<%= item.id %>" name="postId">
+                  <button type="submit" class="border-0 bg-transparent me-3" id="commentButton<%= item.id %>"
+                    value="<%=item.id%>" onclick="ajaxFunctionForComment(this)"><i class="bi bi-send-fill"
+                      style="font-size: 2rem; color: cornflowerblue;"></i>
+                  </button>
+                </div>
+              </form>
+
+
+
+              <div class="all-comment-pop-up">
+
+                <!-- POP UP FOR READING COMMENTS     -->
+                <!-- Trigger/Open The Modal -->
+
+                <!--  recent post -->
+                <% var l=item.comment.length;%>
+                  <% if(l){ %>
+                    <div class="d-flex align-items-start border border-2 border-secondary rounded p-2">
+                      <div class="d-flex" style="align-items: start;">
+                        <img id="recentCommentUserProfile<%= item.id %>"
+                          src="<%= item.comment[l-1].commentedby.profilephoto%>" class="me-2"
+                          style="height: 40px; width: 40px; border-radius: 50%; border: 2px solid black;"></img>
+                      </div>
+                      <div>
+                        <div class="text-black" id="recentCommentBy<%= item.id %>">
+                          <%= item.comment[l-1].commentedby.name%>
+                        </div>
+
+                        <div style="font-size: 0.9rem;" id="recentComment<%= item.id %>">
+                          <%= item.comment[l-1].body%>
+                        </div>
+                      </div>
+                    </div>
+                    <% } %>
+              </div>
+
+              <!-- ! recent post -->
+
+              <button class="all-comment-pop-up-button" value="<%= item.id %>" onclick="displayCommentModal(this)"
+                id="allCommentButton<%= item.id %>">View all <%= item.comment.length %> comments</button>
+
+              <!-- The Modal -->
+              <div id="myModal<%= item.id %>" class="all-comment-pop-up-button-modal">
+                <button value="<%= item.id %>" class="close border-0 bg-transparent"
+                  onclick="closeCommentModal(this)">&times;</button><!--button to close the modal-->
+                <!-- Modal content -->
+
+
+
+                <div class="all-comment-pop-up-button-modal-content" style="margin-top: 0.9rem">
+
+                  <div class="feed-post-user-detail">
+                    <img src="<%= item.postedby.profilephoto%>" class="feed-post-profile-photo" alt="Profile-Photo">
+                    <div class="feed-post-user-name-date-main d-flex justify-content-between">
+                      <div class="feed-post-user-name-date d-flex flex-column">
+                        <div class="feed-post-user-name">
+                          <%= item.postedby.name %>
+                        </div>
+                        <div class="feed-post-access">
+                          <%= item.postedby.hostel %>&nbsp;Hostel
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="feed-post-user-date ms-auto me-2">7/11/2023</div>
+
+                  </div>
+                  <div class="feed-post-discription">
+                    <p class="feed-post-discription-para"> </p>
+                  </div>
+                  <div class="feed-post-user-image-container p-1"><img src="<%= item.photo %>" alt=""
+                      class="feed-post-user-image">
+
+                    <!-- ALL COMMENTS -->
+                    <% item.comment.forEach((commentItem)=> {%>
+                      <div class="all-comment-pop-up-button-modal-content-comments">
+                        <div class="all-comment-pop-up-button-modal-content-comment-user-detail">
+                          <img src="<%= commentItem.commentedby.profilephoto%>"
+                            class="all-comment-pop-up-button-modal-feed-post-profile-photo" alt="Profile-Photo"></img>
+                          <div class="feed-post-user-name-date-main">
+                            <div class="feed-post-user-name-date d-flex flex-column">
+                              <div class="all-comment-pop-up-button-modal-user-name-name" style="font-size: 1rem;">
+                                <%= commentItem.commentedby.name %>
+                              </div>
+                              <div
+                                class="all-comment-pop-up-button-modal-user-name all-comment-pop-up-button-modal-user-name-access">
+                                <%= commentItem.commentedby.hostel %>&nbsp; Hostel
+                              </div>
+                            </div>
+                          </div>
+                          <div class="all-comment-pop-up-button-modal-user-date ms-auto me-2">7/11/2023</div>
+
+                        </div>
+                        <div class="all-comment-pop-up-button-modal-content-comment-text">
+                          <p>
+                            <%= commentItem.body %>
+                          </p>
+                        </div>
+
+                      </div>
+                      <%})%>
+                        <!-- ! ALL COMMENTS -->
+
+
+                  </div>
+
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+          <%})%>
+      </div>
+
+      <!-- ================ ! for posts =========================== -->
+      </div>
+      <% } %>
+        <%- include("partials/footer.ejs") %>

@@ -1,0 +1,140 @@
+<%- include("../partials/header.ejs") %>  
+<div class="indexContainer">
+  <div class="mt-5" >
+  <form action="/signup" method="post" enctype="multipart/form-data" class="signup row g-4 mx-auto m-4 needs-validation" novalidate style="background-color: rgb(0, 199, 199)">
+
+<!-- ================================ HEADER FOR SHOWING ERROR MESSAGE ============================================= -->
+
+<div class="modal <%= toastvalue %> mt-5" tabindex="-1" role="dialog" id="toast">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="text-black"><%= msg %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================ !HEADER FOR SHOWING ERROR MESSAGE ============================================= -->    
+
+    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start mt-3">
+      <p class="lead fw-normal mb-1 me-3 text-center">Sign up with</p>
+      <a type="button" class="btn btn-primary btn-floating mx-1" style="background-color: red;" role="button" href="/auth/google">
+        <i class="fa-brands fa-google"></i>
+      </a>
+    </div>
+
+    <div class="divider d-flex align-items-center mb-2">
+      <p class="text-center fw-bold mx-3 mb-0">Or</p>
+    </div>
+
+    <div class="col-md-12">
+      <label for="validationCustom01" class="form-label">Name</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="Enter your name" name="name" required>
+      <div class="valid-feedback">
+        Looks good! 
+      </div>
+      <div class="invalid-feedback">
+        Enter your name
+      </div>
+    </div>
+
+    <div class="col-md-12">
+        <label for="validationCustom02" class="form-label">Email</label>
+        <input type="email" class="form-control" id="validationCustom02" placeholder="Enter your email" name="email" required>
+        <!-- </div> -->
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+           Enter your email
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label for="validationCustom03" class="form-label">Password</label>
+        <input type="password" class="form-control" id="validationCustom03" placeholder="Enter your password" name="password" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Enter your password
+        </div>
+      </div>
+    
+    <div class="col-md-12">
+      <label for="validationCustom04" class="form-label">Hostel</label>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Choose your hostel
+      </div>
+      <select class="form-select" id="validationCustom05" name="hostel" required>
+        <option selected disabled value="">Choose your hostel</option>
+        <option value="Raman">Raman</option>
+        <option value="Patel">Patel</option>
+        <option value="Malviya">Malviya</option>
+        <option value="Tagore">Tagore</option>
+        <option value="Tilak">Tilak</option>
+      </select>
+    </div>
+    <div class="col-md-12">
+      <label for="validationCustom06" class="form-label">Room no.</label>
+      <input type="text" class="form-control" id="validationCustom03" placeholder="Enter your room no." name="room" required>
+      <div class="valid-feedback">
+        Looks good.
+      </div>
+      <div class="invalid-feedback">
+        Enter your room no.
+      </div>
+    </div>
+
+
+    <div class="input-group mb-5 ms-auto me-auto justify-content-between align-items-center" id="createpost-image-section">
+        <div class="d-flex flex-column">
+          <label class="form-label">Profile photo</label>
+          <div class="d-flex flex-row">
+            <input type="file" class="form-control" id="postformimage" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".jpg, .jpeg, .png" name="profileimage"/>
+            <button class="btn btn-outline-secondary text-white bg-danger" type="button" id="inputGroupFileAddon04">Remove</button>
+          </div>
+      </div>
+      <img src="" id="imagepreview" alt="no preview" style="height: 13rem; width: 16rem; border: 1px dashed whitesmoke; border-radius: 5px;">
+    </div>
+
+
+    <div class="col-md-12">
+      <label class="form-label">Gender</label>
+        <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="validationformcheck2" name="gender" value="male" required/>
+        <label class="form-check-label" for="validationformcheck2">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="inlineRadio2" name="gender" value="female">
+        <label class="form-check-label" for="inlineRadio2">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="inlineRadio3" name="gender" value="others">
+        <label class="form-check-label" for="inlineRadio3">Others</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="role" value="student">
+    <div class="d-flex justify-content-center">
+      <button class="w-300 btn btn-primary" type="submit">Sign up</button>
+    </div>
+
+  </form>
+  </div>
+</div>
+  <%- include("../partials/footer.ejs") %>  

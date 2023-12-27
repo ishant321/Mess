@@ -1,0 +1,669 @@
+:root{
+    --color-type-1-900: rgba(0, 119, 255);
+    --color-type-2-900: rgba(0, 255, 255);
+}
+
+/* ------- NAVBAR ------- */
+.my-navbar{
+    background-color: rgb(159, 210, 212) !important;
+}
+.hover-zoom{
+    transition: all 0.7s;
+}
+.hover-zoom:hover{
+    transform: rotate(360deg);
+}
+
+/* ------- ! NAVBAR ------- */
+
+/* ---------- HOME PAGE ---------- */
+
+.main-logo{
+    transition: all 0.6s;
+}
+.main-logo:hover{
+    transform: rotate(45deg);
+}
+
+/* ---------- ! HOME PAGE ---------- */
+
+/* --------- FOR COMMENTS OF THE POSTS ----------- */
+#ch{
+    display: none;
+}
+#ch:checked ~ .more-comments{
+    display: block;
+}
+.more-comments{
+    display: none;
+}
+
+
+
+.indexContainer{
+    font-family: 'Montserrat', sans-serif;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* height: 100vh; */
+    width: 100%;
+    overflow-y: hidden;
+    background-image: linear-gradient(0deg, rgba(0, 255, 255, 0.8), rgba(0, 119, 255, 0.8)), url("//images01.nicepagecdn.com/c461c07a441a5d220e8feb1a/46e8bacfa13d5e5ab7947ff9/-min.jpg");
+}
+.post{
+    margin: 10px auto;
+}
+.post-box{
+    margin-top: 5%;
+}
+.container1{
+    margin-top: 200px;
+    height: 50%;
+    width: 60%;
+    text-align: center;
+    /* background-color: aqua; */
+}
+.container1 h4{
+    font-family:'Courier New', Courier, monospace;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.users{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px;
+    height: 50px;
+    width: 150px;
+    font-weight: bold;
+    /* font-size: 20px; */
+    border-radius: 25px;
+    border: 2px solid white;
+
+}
+.user:hover{
+    color: rgb(29, 26, 26);
+    background-color: aliceblue;
+   font-weight: bolder;
+    cursor: pointer;
+}
+
+/* =========== for post ==================== */
+
+/* APPEARENCE OF POST ON FEED */
+.feed-post{
+    font-family: Inter, sans-serif;
+    color: #676A79;
+    width:474px;
+    height: 700px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: var(--shade-4-color) ;
+}
+
+
+
+
+/* User details on feed post  */
+
+.feed-post{
+/* 
+    width: 100%; */
+    margin-top: 5px;
+    margin-bottom: 0px;
+    background-color:#fefefe;
+    height:fit-content;
+}
+.feed-post-user-detail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    border-radius: 10px;
+
+}
+
+.feed-post-user-name-date-main{
+    margin: 10px;
+}
+
+.feed-post-profile-photo{
+    margin-left: 10px;
+    padding: 2px;
+    height: 50px;
+    width: 50px;
+   border-radius: 50%;
+   border:2px solid  rgb(102, 102, 233);
+}
+
+.feed-post-user-name{
+    margin-right: 5px;
+    font-weight: bolder;
+    color: #14191E;
+    cursor: pointer;
+}
+.feed-post-user-name:hover{
+    color: #0F6FEC;
+}
+.feed-post-user-name-date{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.feed-post-user-image{
+    margin-top: 2px;
+    width: 100%;
+    height: 500px;
+
+}
+
+.feed-post-user-image-container{
+    width: 100%;
+     
+}
+
+
+.feed-post-discription{
+    box-sizing: border-box;
+    padding: 0 16px 10px;
+}
+
+.feed-post-body-vote-access-comment{
+    width: 100%;
+  
+}
+
+
+/* Upvote button  */
+.feed-post-body-vote-access{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.feed-post-body-vote-access-comment-post-vote{
+    display: flex;
+    margin: 10px;
+}
+
+.arrow-up {
+    margin-right: 10px;
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    background-color: #fff;
+    padding: 0;
+    border: 0;
+    outline: none;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #0F6FEC;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+  .arrow-down {
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    background-color: #fff;
+    padding: 0;
+    border: 0;
+    outline: none;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #0F6FEC;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }  
+
+.feed-post-body-vote-access-comment-access{
+    color: #14191E;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+
+/* Comment box and comment button  */
+.feed-post-body-vote-access-comment-comment{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.feed-post-body-vote-access-comment-comment-comment{
+  margin-left: 10px;
+
+  border: #676A79;
+  background-color: #FFFFFF;
+  /* font-family: inherit;
+  font-size: inherit; */
+  padding: 5px 6px; 
+  display: block;
+  overflow: hidden;
+  resize: none;
+  border-radius: 10px;
+  line-height: 20px;
+  border: none;
+  border: 1px solid rgb(213, 213, 213);
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.feed-post-body-vote-access-comment-comment-comment[contenteditable]:empty::before {
+    content: "Share your views...";
+    color: gray;
+  }
+
+.feed-post-body-vote-access-comment-comment-submit{
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.feed-post-body-vote-access-comment-comment-submit:hover{
+    background-color: #0F6FEC;
+}
+
+
+/* comment pop-up button  */
+.all-comment-pop-up{
+    margin: 10px;
+}
+.all-comment-pop-up-button{
+   background-color: inherit;
+   border: none;
+   color: #ababac;
+}
+
+
+
+
+/* Solved unsolved buttton  */
+.feed-post-body-vote-access{
+    display: flex;
+    flex-wrap: wrap;
+}
+.feed-post-body-solve-unsolve-acsess{
+    display: flex;
+    flex-wrap: wrap;
+}
+.feed-post-body-vote-access-comment-access{
+   font-size: smaller; 
+   font-weight: bolder;
+}
+
+/* Commmets pop up  */
+/* The Modal (background) */
+.all-comment-pop-up-button-modal{
+
+display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  margin-top: 50px;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  
+  /* Modal Content */
+  .all-comment-pop-up-button-modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  align-self: center;
+  margin-top: 0px;
+  border-radius: 10px;
+  border: 1px solid #888;
+  width: 500px;
+  margin-bottom: 100px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+
+  /* MODEL COMMENT SECTION  */
+.all-comment-pop-up-button-modal-content-comments{
+    margin: 20px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+  .all-comment-pop-up-button-modal-feed-post-profile-photo{
+    /* margin-left: 10px; */
+    padding: 2px;
+    height: 40px;
+    width: 40px;
+   border-radius: 50%;
+   border:2px solid  rgb(102, 102, 233);
+  
+  }
+
+  .all-comment-pop-up-button-modal-content-comment-user-detail{
+    display: flex;
+    align-items: center;
+    
+}
+.all-comment-pop-up-button-modal-user-name{
+  font-size: 13px;
+  font-weight: bolder;
+}
+.all-comment-pop-up-button-modal-user-name-name{
+    color: #14191E;
+    font-weight: bolder;
+    font-size: 13px;
+  }
+  
+  .all-comment-pop-up-button-modal-user-date{
+    font-size: 10px;
+    font-weight: bolder;
+  } 
+
+ .all-comment-pop-up-button-modal-content-comment-text{
+    color: #14191E;
+ }
+
+/* =========== for post ==================== */
+
+
+/* =======================================
+--------------- SIGN UP ------------------
+======================================= */
+
+.signup{
+    max-width: 70%;
+    /* background-color: rgba(46, 46, 46, 0.8); */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+/* -------- LOG IN ---------- */
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+    height: 100%;
+}
+}
+@media only screen and (max-width: 620px){
+    .h-custom{
+        width: 80% !important;
+        margin-top: 3rem;
+    }
+}
+
+
+/* -------- PROFILE ---------- */
+.profile-post{
+    height: 23rem;
+}   
+
+/*----- ADMIN  -------*/
+
+.admin-logo{
+    transition: all 0.5s;
+}
+
+.admin-logo:hover{
+    transform: rotateY(360deg);
+}
+
+/*----- !ADMIN  -------*/
+
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fbc2eb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
+    }
+
+    @media only screen and ( max-width:500px) {
+        #createpost-image-section{
+
+            flex-direction: column;
+        }
+
+        #imagepreview{
+            margin-top: 2rem;
+        }
+    }
+
+/* =========== HOMEPAGE RESPONSIVENESS ===================== */
+
+@media only screen and ( max-width:940px) {
+    .main-second{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media only screen and ( max-width:775px) {
+    .main-first{
+        flex-direction: column;
+        margin-top: 15rem !important;
+        align-items: center;
+    }
+    .main-second{
+        margin-top: 15rem !important;
+    }
+    .main-first-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+/* =========== ! HOMEPAGE RESPONSIVENESS ===============
+
+
+/* =========== PROFILE PAGE RESPONSIVENESS ===================== */
+
+@media only screen and ( max-width:940px) {
+    .profile-post{
+        height: 18rem;
+    }
+}
+@media only screen and ( max-width:775px) {
+    .profile-post{
+        height: 13rem;
+    }
+}
+
+/* =========== ! PROFILE PAGE RESPONSIVENESS ===============*/
+
+/* =========== ADMIN ADD BUTTON =============*/
+
+@media only screen and ( max-width:950px) {
+    .admin-add-button{
+        flex-direction: column;
+    }
+}
+
+@media only screen and ( max-width:630px) {
+    .admin-add-button button{
+        width: 80% !important;
+    }
+}
+
+@media only screen and ( max-width:400px) {
+    .admin-add-button button{
+        width: 90% !important;
+    }
+}
+
+/* =========== ! ADMIN ADD BUTTON ============*?
+
+
+
+
+/* ===============Floating Notification ========= */
+       
+          .floating-button {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 10;
+            background-color: inherit;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+
+          @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+          * {
+            padding: 0px;
+            margin: 0px
+          }
+
+          body {
+            background: #8E24AA;
+            color: #fff;
+            font-family: 'Manrope', sans-serif
+          }
+
+
+          .icon {
+            cursor: pointer;
+            margin-right: 50px;
+            line-height: 60px
+          }
+
+          .icon span {
+            background: #f00;
+            padding: 7px;
+            border-radius: 50%;
+            color: #fff;
+            vertical-align: top;
+            margin-left: -25px
+          }
+
+          .icon img {
+            display: inline-block;
+            width: 26px;
+            margin-top: 4px
+          }
+
+          .icon:hover {
+            opacity: .7
+          }
+
+          .logo {
+            flex: 1;
+            margin-left: 50px;
+            color: #eee;
+            font-size: 20px;
+            font-family: monospace
+          }
+
+          .notifications {
+            width: 300px;
+            height: 0px;
+            opacity: 0;
+            position: absolute;
+            top: 63px;
+            right: 62px;
+            border-radius: 5px 0px 5px 5px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+          }
+
+          .notifications h2 {
+            font-size: 14px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            color: #999
+          }
+
+          .notifications h2 span {
+            color: #f00
+          }
+
+          .notifications-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 6px 9px;
+            margin-bottom: 0px;
+            cursor: pointer
+          }
+
+          .notifications-item:hover {
+            background-color: #eee
+          }
+
+          .notifications-item img {
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-right: 9px;
+            /* border-radius: 50%; */
+            margin-top: 2px
+          }
+
+          .notifications-item .text h4 {
+            color: #777;
+            font-size: 16px;
+            margin-top: 3px
+          }
+
+          .notifications-item .text p {
+            color: #aaa;
+            font-size: 12px
+          }
+
+
+/* =============== !Floating Notification ========= */
+
+
+
+
+
+
+

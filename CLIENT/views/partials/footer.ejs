@@ -1,0 +1,141 @@
+
+<div class="footer" style="width: 100%;">© <%= new Date().getFullYear(); %> Company, Inc </div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add("was-validated")
+    }, false)
+  })
+})()
+
+
+function hideModal(){
+  document.getElementById("toast").classList.remove("d-block");
+}
+setTimeout("hideModal()", 3000);
+
+
+// ================ SHOWO IMAGE PREVIEW REMOVE  ===============
+
+  var inputImage = document.getElementById("postformimage");
+  var previewImage = document.getElementById("imagepreview");
+  var removeImage = document.getElementById("inputGroupFileAddon04");
+
+  inputImage.addEventListener("change", function(event){
+    if(event.target.files.length == 0){
+      return;
+    }
+    var tempUrl = URL.createObjectURL(event.target.files[0]);
+    previewImage.setAttribute("src", tempUrl);
+  })
+
+  removeImage.addEventListener("click", function(event){
+    previewImage.setAttribute("src", "");
+    const dt = new DataTransfer();
+    inputImage.files = dt.files;
+  })
+
+// ================ ! SHOW IMAGE PREVIEW AND REMOVE ===============
+
+//================= ADMIN PAGE POP UP ===================
+
+function hidepopup(){
+  var popupbox = document.getElementById("popupbox");
+  popupbox.classList.add("d-none");
+}
+
+//================= !ADMIN PAGE POP UP ===================
+
+
+//================= ADMIN HOME PAGE POP UP TO CONFIRM TO REMOVE  USER ===================
+
+function showpopup(btn){ // show popup function while removing a user
+  var popupbox = document.getElementById("showpopupbox" + btn.value);
+  popupbox.classList.add("d-block");
+}
+
+function removepopup(btn){ // remove popup function while remvoing a function
+  var popupbox = document.getElementById("showpopupbox" + btn.value);
+  
+  popupbox.classList.remove("d-block");
+}
+
+function showsignuppopup(obj){ //show popup while sign up for admin, accountant or chief warden
+  var popupbox = document.getElementById("showsignuppopupbox");
+  var buttonValue = obj.value;
+  var role = document.getElementById("role");
+
+  if(buttonValue == "chiefwarden"){
+    document.getElementById("accountantInput").classList.add("d-none");
+    document.getElementById("roleintitle").innerHTML = "Chief warden";
+  }
+  else if(buttonValue == "accountant"){
+    document.getElementById("roleintitle").innerHTML = "Accountant";
+    console.log(document.getElementById("accountantInput"));
+    document.getElementById("accountantInput").classList.remove("d-none");
+  }
+  else{
+    document.getElementById("accountantInput").classList.add("d-none");
+    document.getElementById("roleintitle").innerHTML = "Admin";
+  }
+
+  role.value = buttonValue;
+  popupbox.classList.add("d-block");
+}
+
+function removesignuppopup(){ // remove popup function while signup
+  var popupbox = document.getElementById("showsignuppopupbox");
+  popupbox.classList.remove("d-block");
+}
+
+//================= !ADMIN HOME PAGE POP UP TO CONFIRM TO REMOVE USER ===================
+
+
+//=============== FOR COMMENT MODAL ======================
+
+function displayCommentModal(id){
+  var postid = id.value;
+  var modal = document.getElementById("myModal"+postid); //to display modal
+  var notification = document.getElementById("notification");
+  modal.classList.add("d-block");
+  notification.classList.add("d-none");
+}
+
+function closeCommentModal(id){
+  console.log(id);
+  var postid = id.value;
+  var modal = document.getElementById("myModal"+postid);
+  var notification = document.getElementById("notification");
+  modal.classList.remove("d-block");
+  notification.classList.remove("d-none");
+}
+
+//=============== ! FOR COMMENT MODAL =====================
+
+
+</script>
+
+<!-- ========== BOOTSTRAP JS FILES ====================== -->
+
+<script src="/styles/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../js/ajax.js"></script>
+<script src="/styles/mdb/mdb.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- ========== ! BOOTSTRAP JS FILES ==================== -->
+
+</body>
+</body>

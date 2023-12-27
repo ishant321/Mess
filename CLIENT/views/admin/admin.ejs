@@ -1,0 +1,58 @@
+<%- include("../partials/header.ejs") %>    
+
+<div class="indexContainer">
+    <div style="width: 70%; min-height: 100vh;">
+        <div class="position-absolute" id="popupbox" style="height: 100vh; left: 0; background-color: rgba(0, 0, 0, 0.4); z-index: 3;">
+            <div class="card w-50 text-center position-relative"  style="margin: 10rem auto;">
+                <div class="card-body">
+                  <h3 class="card-title" style="color: red;">!!&nbsp;Important&nbsp;!!</h3>
+                  <p class="card-text">Accountant and chief warden can only be registerd by admin. Admin is pre assigned by developer. There should be only one instance of chief warden and number of accountant will be equal to the number of mess present. The admin has nothing to do with the mess work but it only managesthe users. The task of admin is to add cheif warden who have the power to add accountant. Also admin can remove the users. </p>
+                  <button class="btn position-absolute fixed-top bg-none ms-auto btn-lg bg-transparent" style="width: fit-content;" onclick="hidepopup()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </div>
+        </div>
+
+        <div class="container d-flex flex-column w-50 p-5" style="background-color: rgb(7, 31, 52); height: fit-content; z-index: 0; margin-top: 7rem;">
+            <form action="/login" method="post" class="text-center needs-validation" style="width: 100%;" novalidate>
+            <div class="text-center mb-3 pb-1" style="background: -webkit-linear-gradient(#27EF9F, #0DB8DE); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <i class="fa-solid fa-key fa-3x me-3"></i>
+            </div>
+
+            <h5 class="fw-normal mb-4 pb-3" style="letter-spacing: 1px;">ADMIN PANEL</h5>
+
+           <!-- Email input -->
+           <div class="form-outline mb-5">
+            <input type="email" id="validationCustom01" class="form-control form-control-lg"
+              placeholder="Enter a valid email address" name="email" required style="color: white;"/>
+            <label class="form-label" for="form3Example3" style="color: white;">Email address</label>
+            <div class="valid-feedback">
+              Looks good! 
+            </div>
+            <div class="invalid-feedback">
+              Enter your email
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-5">
+            <input type="password" id="validationCustom02" class="form-control form-control-lg"
+              placeholder="Enter password" name="password" required style="color: white;"/>
+            <label class="form-label" for="form3Example4" style="color: white;">Password</label>
+            <div class="valid-feedback">
+              Looks good! 
+            </div>
+            <div class="invalid-feedback">
+              Enter your password
+            </div>
+          </div>
+
+            <!-- form name -->
+            <input type="hidden" name="formname" value="admin">
+
+            <!-- Login button -->
+            <button type="sumbit" class="btn btn-primary mb-4 bg-transparent" style="border: 2px solid rgb(0, 153, 255); width: 7rem; color: rgb(0, 153, 255);">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer.ejs") %> 
