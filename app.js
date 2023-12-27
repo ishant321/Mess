@@ -12,7 +12,7 @@ require("./models/comment");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/CLIENT/views"));
-app.use(express.static(path.join(__dirname,  "./", "/CLIENT/public")));
+app.use(express.static(path.join(__dirname, "/CLIENT/public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload({useTempFiles: true}));
