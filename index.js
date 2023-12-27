@@ -43,7 +43,7 @@ app.get("/", async (req, res) => {
     if(req.isAuthenticated()){
         const currUserId = req.user.id;
        
-        if(!req.user.hostel && req.user == "student"){
+        if(!req.user.hostel){
             return res.redirect("/googleform");
         }
         if(!req.user.hostel && req.user.role == "student"){

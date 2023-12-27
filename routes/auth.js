@@ -48,7 +48,9 @@ function(accessToken, refreshToken, profile, done) {
   // userModel.findOrCreate({name: profile.given_name, email: profile.email, googleId: profile.id, profilephoto: profile.photos[0].value}, function(err, user){
   //   return done(err, user);
   // })
-  userModel.findOrCreate({email: profile.email}, {name: profile.given_name, googleId: profile.id, profilephoto: profile.photos[0].value}, function(err, user){
+  userModel.findOrCreate({email: profile.email}, {name: profile.given_name, googleId: profile.id, profilephoto: profile.photos[0].value}, async function(err, user){
+    user.role = "student";
+    await user.save();
     return done(err, user);
   })
 }
