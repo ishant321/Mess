@@ -40,7 +40,7 @@ build/Release
 
 # Dependency directories
 REF/
-SERVER/node_modules/
+node_modules/
 jspm_packages/
 DEMO PHOTOS/
 
